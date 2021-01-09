@@ -7,7 +7,7 @@ public class Move : MonoBehaviour
     Rigidbody rb; // proměnná, která zastupuje naši komponentu Rigidbody
     void Start()
     {
-        rb = transform.GetComponent<Rigidbody>(); // definujeme rb jakou má hodnotu; transform je objekt, na který je skript napojen
+        rb = transform.GetComponent<Rigidbody>(); // definujeme rb jakou má hodnotu; transform je vlastnost objektu, na který je skript napojen
         // funkce GetComponent() nám umožňuje získat komponentu jako proměnou, se kterou můžeme dále pracovat
 
     }
@@ -17,22 +17,22 @@ public class Move : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.D)) // využíváme podmínky, že pokud někdo stiskne klávesu W, tak se spustí tato podmínka, dokud bude klávesa zmáčknuta
         {
-            rb.AddForce(new Vector3(5, 0, 0)); // Zde využíváme toho, že na proměnou přešly vlastnosti a metody komponenty RIGIDBODY.
+            rb.AddRelativeForce(new Vector3(5, 0, 0)); // Zde využíváme toho, že na proměnou přešly vlastnosti a metody komponenty RIGIDBODY.
             // Metoda AddForce() přidá sílu do určitého směru, který nastavujeme pomocí os x, y a z. Zde přidáme hodnotu síly 5 na osu x (do strany).
         }
         if (Input.GetKey(KeyCode.A))
         {
-            rb.AddForce(new Vector3(-5, 0, 0));
+            rb.AddRelativeForce(new Vector3(-5, 0, 0));
             // Zde přidáme hodnotu síly -5 na osu x (do strany).
         }
         if (Input.GetKey(KeyCode.W))
         {
-            rb.AddForce(new Vector3(0, 0, 5));
+            rb.AddRelativeForce(new Vector3(0, 0, 5));
             // Zde přidáme hodnotu síly 5 na osu z (dopředu).
         }
         if (Input.GetKey(KeyCode.S))
         {
-            rb.AddForce(new Vector3(0, 0, -5));
+            rb.AddRelativeForce(new Vector3(0, 0, -5));
             // Zde přidáme hodnotu síly -5 na osu z (dozadu).
         }
     }
