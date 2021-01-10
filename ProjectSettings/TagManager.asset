@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Animobject
+  - FxTemporaire
+  - effekt
+  - crosshair
   layers:
   - Default
   - TransparentFX
