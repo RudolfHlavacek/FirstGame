@@ -4,36 +4,40 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    Rigidbody rb; // proměnná, která zastupuje naši komponentu Rigidbody
+    Rigidbody rb;
+    Animator objectwithAnim;
+
     void Start()
     {
-        rb = transform.GetComponent<Rigidbody>(); // definujeme rb jakou má hodnotu; transform je vlastnost objektu, na který je skript napojen
-        // funkce GetComponent() nám umožňuje získat komponentu jako proměnou, se kterou můžeme dále pracovat
-
+        rb = transform.GetComponent<Rigidbody>();
+        objectwithAnim = GameObject.FindGameObjectWithTag("Animobject").GetComponent<Animator>();
     }
 
-    // Update is called once per frame= tento skript se spouští každý snímek znovu a znovu pokud máte například 60fps(frames per second) skript se vám spustí 60krát za jednu sekundu.
     void Update()
     {
-        if (Input.GetKey(KeyCode.D)) // využíváme podmínky, že pokud někdo stiskne klávesu W, tak se spustí tato podmínka, dokud bude klávesa zmáčknuta
+        if (Input.GetKey(KeyCode.D))
         {
-            rb.AddRelativeForce(new Vector3(5, 0, 0)); // Zde využíváme toho, že na proměnou přešly vlastnosti a metody komponenty RIGIDBODY.
-            // Metoda AddForce() přidá sílu do určitého směru, který nastavujeme pomocí os x, y a z. Zde přidáme hodnotu síly 5 na osu x (do strany).
+            rb.AddRelativeForce(new Vector3(50, 0, 0));
+            objectwithAnim.SetBool("Walk", true); // Spuštění animace
         }
         if (Input.GetKey(KeyCode.A))
         {
-            rb.AddRelativeForce(new Vector3(-5, 0, 0));
-            // Zde přidáme hodnotu síly -5 na osu x (do strany).
+            rb.AddRelativeForce(new Vector3(-50, 0, 0));
+            objectwithAnim.SetBool("Walk", true);
         }
         if (Input.GetKey(KeyCode.W))
         {
-            rb.AddRelativeForce(new Vector3(0, 0, 5));
-            // Zde přidáme hodnotu síly 5 na osu z (dopředu).
+            rb.AddRelativeForce(new Vector3(0, 0, 50));
+            objectwithAnim.SetBool("Walk", true);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            rb.AddRelativeForce(new Vector3(0, 0, -5));
-            // Zde přidáme hodnotu síly -5 na osu z (dozadu).
+            rb.AddRelativeForce(new Vector3(0, 0, -50));
+            objectwithAnim.SetBool("Walk", true);
+        }
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
+        {
+            objectwithAnim.SetBool("Walk", false);
         }
     }
 }
